@@ -211,14 +211,15 @@ def Qlearning(env, qepsilon=0.1,q_tol=.001, lr=0.8,decay=.999, qgamma=0.95, epis
             # - the probability of executing our action 
             # (we don't use this information here)
             next_state, reward, terminate, _ = env.step(action)
-
+            r=reward
             if desc_states[next_state] == 'H': # if the agent falls in an hole
-                r = reward # then apply the state reward
+
+            #   r = reward # then apply the state reward
                 # the Q-value of the terminal state equals the reward
                 Q[next_state] = np.ones(n_actions) * r
                 
-            elif desc_states[next_state] in ['S', 'F']: # the agent is in a frozen tile
-                r = reward # give the agent the state reward
+            #elif desc_states[next_state] in ['S', 'F']: # the agent is in a frozen tile
+            #    r = reward # give the agent the state reward
 
             elif desc_states[next_state] == 'G': # the agent reach the goal state
                 r = reward # give him a big reward
